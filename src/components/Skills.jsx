@@ -6,7 +6,7 @@ export const Skills = () => {
       className="w-full pt-24 md1:pt-0 md1:min-h-screen md1:grid md1:grid-cols-[auto,1fr] md1:gap-6"
       id="skills"
     >
-      <div className="py-8 px-4 md1:w-[60%]">
+      <div className="py-8 px-4">
         <h2 className="mb-10 text-4xl font-bold text-gray-900 md1:mb-20">
           Habilidades
         </h2>
