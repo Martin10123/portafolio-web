@@ -4,22 +4,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#031716",
-        secondary: "#032F30",
-        tertiary: "#0A7075",
-        quaternary: "#0C969C",
-        quinary: "#274D60",
+        primary: "#150016",
+        secondary: "#29104A",
+        tertiary: "#522c5d",
+        quaternary: "#845162",
+        quinary: "#e3b6b1",
+        senary: "#ffe3d8",
       },
       screens: {
-        md1: "800px",
+        md1: "890px",
+        lg1: "1250px",
+        lg2: "1400px",
       },
-      backgroundImage: {
-        "custom-gradient":
-          "linear-gradient(to right bottom, #0a7075, #0b777c, #0b7e83, #0c858b, #0c8c92, #0c8992, #0e8692, #118391, #197587, #20677b, #255a6e, #274d60)",
+      gridTemplateColumns: {
+        "auto-fill-300": "repeat(auto-fill, minmax(300px, 1fr))",
       },
-      backgroundColor: (theme) => theme("colors"), // Usamos los colores definidos
-      textColor: (theme) => theme("colors"), // Usamos los colores definidos
-      borderColor: (theme) => theme("colors"), // Usamos los colores definidos
+      backgroundColor: (theme) => theme("colors"),
+      textColor: (theme) => theme("colors"),
+      borderColor: (theme) => theme("colors"),
     },
   },
   plugins: [],
