@@ -6,8 +6,8 @@ import AOS from "aos";
 import App from "./App.vue";
 
 AOS.init({
-  duration: 800, // duración en ms
-  once: true, // si quieres que se anime solo una vez
+  duration: 800,
+  once: true,
 });
 
 createApp(App).mount("#app");
