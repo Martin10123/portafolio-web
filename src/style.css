@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.menu-item {
+  @apply flex items-center gap-2 p-4 border-b border-gray-200 rounded-xl text-sm hover:bg-gray-100 cursor-pointer;
+}
