@@ -17,7 +17,7 @@ import LinksToContact from "../components/LinksToContact.vue";
         <p
           class="text-xl text-gray-600 font-light leading-relaxed max-w-3xl mx-auto"
         >
-          Desarrollador de Software con 3 año de experiencia en desarrollo web
+          Desarrollador de Software con 3 años de experiencia en desarrollo web
           full stack. He optimizado procesos internos en Cotecmar, reduciendo
           tiempos operativos en un 40%, y mejorado la experiencia de usuario en
           proyectos freelance con un incremento del 35%. Combino herramientas
