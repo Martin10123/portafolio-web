@@ -147,14 +147,21 @@ const allProjects: Project[] = [
 
 const filters = [
   { id: 'all', label: 'Todos' },
-  { id: 'professional', label: 'Profesionales' },
   { id: 'personal', label: 'Personales' },
   { id: 'collaborative', label: 'Colaborativos' },
 ];
 
-const filteredProjects = computed(() => {
-  if (activeFilter.value === 'all') return allProjects;
-  return allProjects.filter((p) => p.type === activeFilter.value);
+const professionalProjects = computed(() => {
+  return allProjects.filter((p) => p.type === 'professional');
+});
+
+const otherProjects = computed(() => {
+  return allProjects.filter((p) => p.type !== 'professional');
+});
+
+const filteredOtherProjects = computed(() => {
+  if (activeFilter.value === 'all') return otherProjects.value;
+  return otherProjects.value.filter((p) => p.type === activeFilter.value);
 });
 
 onMounted(() => {
@@ -203,38 +210,31 @@ onMounted(() => {
       </div>
 
       <p
-        class="works-desc text-stone-400 text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto text-center mb-12"
+        class="works-desc text-stone-400 text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto text-center mb-16"
       >
         Cada proyecto representa un desafío único y una oportunidad para aplicar
         mis habilidades en desarrollo web full stack.
       </p>
 
-      <!-- ═══ Filter Bar ═══ -->
-      <div class="filter-bar flex justify-center gap-3 mb-14">
-        <button
-          v-for="filter in filters"
-          :key="filter.id"
-          @click="activeFilter = filter.id"
-          class="filter-btn px-5 py-2.5 rounded-xl text-sm font-light transition-all duration-300 cursor-pointer"
-          :class="
-            activeFilter === filter.id
-              ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg shadow-orange-500/20'
-              : 'text-stone-400 border border-stone-700/60 hover:text-stone-200 hover:border-stone-600'
-          "
-        >
-          {{ filter.label }}
-        </button>
-      </div>
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- ═══ PROYECTOS PROFESIONALES (siempre visibles) ═══ -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <div class="mb-20">
+        <div class="works-title text-center mb-10">
+          <h3 class="text-2xl md:text-4xl font-bold mb-3">
+            <span class="gradient-text">Proyectos Profesionales</span>
+          </h3>
+          <p class="text-stone-400 text-sm md:text-base font-light max-w-xl mx-auto">
+            Experiencia en producción trabajando con empresas e instituciones
+          </p>
+        </div>
 
-      <!-- ═══ Projects Grid ═══ -->
-      <div
-        class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <div
-          v-for="project in filteredProjects"
-          :key="project.title"
-          class="project-card rounded-2xl overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10 bg-stone-900/70 border border-stone-700/50 hover:border-orange-500/30 backdrop-blur-md"
-        >
+        <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            v-for="project in professionalProjects"
+            :key="project.title"
+            class="project-card rounded-2xl overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10 bg-stone-900/70 border border-stone-700/50 hover:border-orange-500/30 backdrop-blur-md"
+          >
           <!-- Project Image / Carousel -->
           <div class="relative overflow-hidden h-48">
 
@@ -302,13 +302,13 @@ onMounted(() => {
 
             <!-- Type badge -->
             <span
-              class="absolute top-4 right-4 z-10 text-[10px] px-2.5 py-1 rounded-full backdrop-blur-sm font-medium uppercase tracking-wider"
+              class="absolute top-4 right-4 z-10 text-xs px-3 py-1.5 rounded-full backdrop-blur-md font-semibold uppercase tracking-wider shadow-lg"
               :class="
                 project.type === 'professional'
-                  ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
+                  ? 'bg-blue-500/30 text-blue-200 border-2 border-blue-400/50'
                   : project.type === 'personal'
-                  ? 'bg-orange-500/20 text-orange-300 border border-orange-500/30'
-                  : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                  ? 'bg-orange-500/30 text-orange-200 border-2 border-orange-400/50'
+                  : 'bg-amber-500/30 text-amber-200 border-2 border-amber-400/50'
               "
             >
               {{ project.type === 'professional' ? 'Profesional' : project.type === 'personal' ? 'Personal' : 'Colaborativo' }}
@@ -393,6 +393,203 @@ onMounted(() => {
           </div>
         </div>
       </div>
+
+      <!-- ═══════════════════════════════════════════════════ -->
+      <!-- ═══ PROYECTOS PERSONALES Y COLABORATIVOS ═══ -->
+      <!-- ═══════════════════════════════════════════════════ -->
+      <div>
+        <div class="works-title text-center mt-8">
+          <h3 class="text-2xl md:text-4xl font-bold mb-3">
+            <span class="gradient-text">Proyectos Personales y Colaborativos</span>
+          </h3>
+          <p class="text-stone-400 text-sm md:text-base font-light max-w-xl mx-auto mb-8">
+            Proyectos de aprendizaje y experimentación con nuevas tecnologías
+          </p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar flex justify-center gap-3 mb-10">
+          <button
+            v-for="filter in filters"
+            :key="filter.id"
+            @click="activeFilter = filter.id"
+            class="filter-btn px-5 py-2.5 rounded-xl text-sm font-light transition-all duration-300 cursor-pointer"
+            :class="
+              activeFilter === filter.id
+                ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg shadow-orange-500/20'
+                : 'text-stone-400 border border-stone-700/60 hover:text-stone-200 hover:border-stone-600'
+            "
+          >
+            {{ filter.label }}
+          </button>
+        </div>
+
+        <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            v-for="project in filteredOtherProjects"
+            :key="project.title"
+            class="project-card rounded-2xl overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10 bg-stone-900/70 border border-stone-700/50 hover:border-orange-500/30 backdrop-blur-md"
+          >
+          <!-- Project Image / Carousel -->
+          <div class="relative overflow-hidden h-48">
+
+            <!-- ── Single image ── -->
+            <template v-if="!project.images">
+              <img
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                :src="project.image"
+                :alt="project.title"
+              />
+            </template>
+
+            <!-- ── Carousel ── -->
+            <template v-else>
+              <!-- Slides -->
+              <div class="w-full h-full relative">
+                <img
+                  v-for="(img, idx) in project.images"
+                  :key="img"
+                  :src="img"
+                  :alt="`${project.title} - ${idx + 1}`"
+                  class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                  :class="(carouselIndexes[project.title] ?? 0) === idx ? 'opacity-100' : 'opacity-0'"
+                />
+              </div>
+
+              <!-- Prev button -->
+              <button
+                @click.stop="prevSlide(project.title, project.images!.length)"
+                class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-stone-900/70 hover:bg-orange-500/80 rounded-full p-1 transition-all duration-200 cursor-pointer"
+              >
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+
+              <!-- Next button -->
+              <button
+                @click.stop="nextSlide(project.title, project.images!.length)"
+                class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-stone-900/70 hover:bg-orange-500/80 rounded-full p-1 transition-all duration-200 cursor-pointer"
+              >
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+
+              <!-- Dots -->
+              <div class="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
+                <button
+                  v-for="(_, idx) in project.images"
+                  :key="idx"
+                  @click.stop="goToSlide(project.title, idx)"
+                  class="rounded-full transition-all duration-300 cursor-pointer"
+                  :class="(carouselIndexes[project.title] ?? 0) === idx
+                    ? 'w-4 h-1.5 bg-orange-400'
+                    : 'w-1.5 h-1.5 bg-stone-400/60 hover:bg-stone-300'"
+                />
+              </div>
+            </template>
+
+            <!-- Overlay on hover -->
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 pointer-events-none"
+            />
+
+            <!-- Type badge -->
+            <span
+              class="absolute top-4 right-4 z-10 text-xs px-3 py-1.5 rounded-full backdrop-blur-md font-semibold uppercase tracking-wider shadow-lg"
+              :class="
+                project.type === 'professional'
+                  ? 'bg-blue-500/30 text-blue-200 border-2 border-blue-400/50'
+                  : project.type === 'personal'
+                  ? 'bg-orange-500/30 text-orange-200 border-2 border-orange-400/50'
+                  : 'bg-amber-500/30 text-amber-200 border-2 border-amber-400/50'
+              "
+            >
+              {{ project.type === 'professional' ? 'Profesional' : project.type === 'personal' ? 'Personal' : 'Colaborativo' }}
+            </span>
+          </div>
+
+          <!-- Project Info -->
+          <div class="p-6">
+            <h3
+              class="text-lg font-semibold text-stone-100 mb-2 group-hover:text-orange-400 transition-colors duration-300"
+            >
+              {{ project.title }}
+            </h3>
+            <p
+              class="text-stone-400 text-sm font-light leading-relaxed mb-1 transition-all duration-300"
+              :class="expandedDesc[project.title] ? '' : 'line-clamp-3'"
+            >
+              {{ project.description }}
+            </p>
+            <button
+              @click.stop="toggleDesc(project.title)"
+              class="text-stone-500 hover:text-orange-400 text-[10px] mb-3 cursor-pointer transition-colors duration-200 self-start"
+            >
+              {{ expandedDesc[project.title] ? '− menos' : '+ más' }}
+            </button>
+
+            <!-- Technologies -->
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span
+                v-for="tech in project.technologies"
+                :key="tech"
+                class="text-[10px] px-2.5 py-1 rounded-full bg-stone-800/80 text-stone-400 border border-stone-700/50"
+              >
+                {{ tech }}
+              </span>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-3 mt-auto" :class="project.linkGitHub ? 'grid grid-cols-2' : ''">
+              <a
+                v-if="project.linkGitHub"
+                :href="project.linkGitHub"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-stone-700/60 text-stone-400 text-xs hover:text-orange-400 hover:border-orange-500/40 transition-all duration-300"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+                Código
+              </a>
+              <a
+                v-if="project.linkDemo"
+                :href="project.linkDemo"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-medium transition-all duration-300 col-span-1"
+                :class="!project.linkGitHub ? 'w-full' : ''"
+                style="
+                  background: linear-gradient(135deg, #f97316, #fbbf24);
+                  color: white;
+                "
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+                Ver proyecto
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
     </div>
     </div>
   </section>
