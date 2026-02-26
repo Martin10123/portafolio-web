@@ -12,7 +12,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="bg-white rounded-lg border border-gray-200 overflow-hidden group">
+  <div class="bg-stone-900/70 border border-stone-700/50 hover:border-orange-500/30 rounded-2xl overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10 backdrop-blur-md">
     <div>
       <img
         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
@@ -22,11 +22,11 @@ defineProps<{
     </div>
     <div class="flex flex-col space-y-1.5 p-6 pb-4">
       <h3
-        class="text-2xl leading-none tracking-tight text-gray-900 font-medium"
+        class="text-2xl leading-none tracking-tight text-stone-100 font-medium group-hover:text-orange-400 transition-colors duration-300"
       >
         {{ title }}
       </h3>
-      <p class="text-sm text-gray-600 font-light">
+      <p class="text-sm text-stone-400 font-light leading-relaxed">
         {{ description }}
       </p>
 
@@ -40,7 +40,7 @@ defineProps<{
 
       <div class="grid grid-cols-2 gap-4 mt-4">
         <a
-          class="border border-gray-300 rounded-lg px-4 py-2 text-sm flex items-center justify-center gap-2"
+          class="border border-stone-700/60 hover:border-orange-500/40 text-stone-400 hover:text-orange-400 rounded-xl px-4 py-2.5 text-xs flex items-center justify-center gap-2 transition-all duration-300"
           :href="linkGitHub || '#'"
           target="_blank"
         >
@@ -48,7 +48,8 @@ defineProps<{
           Codigo
         </a>
         <a
-          class="border border-gray-300 rounded-lg px-4 py-2 text-sm flex items-center justify-center gap-2 !bg-black text-white"
+          class="rounded-xl px-4 py-2.5 text-xs flex items-center justify-center gap-2 font-medium text-white transition-all duration-300"
+          style="background: linear-gradient(135deg, #f97316, #fbbf24);"
           :href="linkDemo || '#'"
           target="_blank"
         >

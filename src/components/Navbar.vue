@@ -30,14 +30,9 @@ const navigateToSection = (sectionId: string) => {
 onMounted(() => {
   // Navbar visible inmediatamente, luego se anima
   if (navRef.value) {
-    navRef.value.style.opacity = '1';
-    gsap.from(navRef.value, 
-      {
-        y: -20,
-        duration: 0.8,
-        ease: 'power2.out',
-        delay: 0.2,
-      }
+    gsap.fromTo(navRef.value,
+      { y: -20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out', delay: 0.2 },
     );
   }
 });
@@ -53,28 +48,28 @@ onMounted(() => {
 
   <header
     ref="navRef"
-    class="fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-500"
+    class="sticky top-0 z-50 py-4 px-4 sm:px-6 md:px-8 lg:px-12 transition-all duration-500"
   >
-    <div class="max-w-6xl mx-auto px-4 md:px-6">
+    <div class="max-w-7xl mx-auto">
       <div
-        class="rounded-2xl px-6 py-3 flex items-center justify-between bg-stone-900/80 backdrop-blur-xl border border-white/5 shadow-2xl shadow-orange-500/5"
+        class="rounded-2xl px-4 sm:px-6 md:px-8 py-3 md:py-4 flex items-center justify-between bg-stone-900/80 backdrop-blur-xl border border-white/5 shadow-2xl shadow-orange-500/5"
       >
         <!-- Logo -->
         <button
           @click="navigateToSection('homePage')"
-          class="text-xl font-light tracking-wider hover:opacity-80 transition-opacity"
+          class="text-xl font-light tracking-wider hover:opacity-80 transition-opacity flex-shrink-0"
         >
           <span class="gradient-text font-bold text-2xl">M</span>
           <span class="text-stone-200">artin</span>
         </button>
 
         <!-- Desktop nav -->
-        <nav class="hidden md:flex items-center gap-1">
+        <nav class="hidden md:flex items-center justify-center gap-2 lg:gap-3 flex-1 mx-8">
           <button
             v-for="section in sections"
             :key="section.id"
             @click="navigateToSection(section.id)"
-            class="relative px-4 py-2 text-sm font-light transition-all duration-300 rounded-xl cursor-pointer"
+            class="relative px-3 lg:px-4 py-2 text-sm font-light transition-all duration-300 rounded-xl cursor-pointer whitespace-nowrap"
             :class="
               props.activeSection === section.id
                 ? 'text-orange-400'
@@ -91,7 +86,7 @@ onMounted(() => {
 
         <!-- Mobile menu button -->
         <button
-          class="md:hidden text-stone-300 cursor-pointer p-1"
+          class="md:hidden text-stone-300 cursor-pointer p-2 hover:bg-white/5 rounded-lg transition-colors flex-shrink-0"
           @click="isMenuOpen = !isMenuOpen"
           :aria-label="isMenuOpen ? 'Cerrar menú' : 'Abrir menú'"
         >
@@ -131,16 +126,16 @@ onMounted(() => {
       <!-- Mobile menu -->
       <div
         class="md:hidden overflow-hidden transition-all duration-500 ease-in-out"
-        :class="isMenuOpen ? 'max-h-96 mt-2' : 'max-h-0'"
+        :class="isMenuOpen ? 'max-h-96 mt-3' : 'max-h-0'"
       >
         <div
-          class="rounded-2xl bg-stone-900/95 backdrop-blur-xl border border-white/5 p-4 space-y-1"
+          class="rounded-2xl bg-stone-900/95 backdrop-blur-xl border border-white/5 p-3 sm:p-4 space-y-1"
         >
           <button
             v-for="section in sections"
             :key="section.id"
             @click="navigateToSection(section.id)"
-            class="w-full text-left px-4 py-3 rounded-xl text-sm transition-all duration-300 cursor-pointer"
+            class="w-full text-left px-4 py-3 sm:py-3.5 rounded-xl text-sm transition-all duration-300 cursor-pointer"
             :class="
               props.activeSection === section.id
                 ? 'text-orange-400 bg-orange-400/10'
@@ -154,3 +149,41 @@ onMounted(() => {
     </div>
   </header>
 </template>
+<style scoped>
+.gradient-text {
+  background: linear-gradient(135deg, #f97316, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Asegurar que el backdrop-blur funcione */
+.backdrop-blur-xl {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Mejorar sombras */
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.shadow-orange-500\/5 {
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.08);
+}
+
+/* Transiciones suaves */
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover states mejorados */
+nav button:hover {
+  transform: translateY(-1px);
+}
+
+.text-orange-400 {
+  color: #fb923c !important;
+  font-weight: 500;
+}
+</style>

@@ -51,31 +51,25 @@ const techStack = [
 ];
 
 onMounted(() => {
-  gsap.from('.skills-title', {
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    ease: 'power3.out',
-    delay: 0.2,
-  });
+  gsap.fromTo('.skills-title',
+    { y: 50, opacity: 0 },
+    { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 },
+  );
 
-  gsap.from('.skill-category-card', {
-    y: 60,
-    opacity: 0,
-    stagger: 0.15,
-    duration: 0.8,
-    ease: 'power3.out',
-    delay: 0.5,
-  });
+  gsap.fromTo('.skill-category-card',
+    { y: 60, opacity: 0 },
+    { y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: 'power3.out', delay: 0.5 },
+  );
 
-  gsap.from('.tech-pill', {
-    scale: 0,
-    opacity: 0,
-    stagger: 0.04,
-    duration: 0.4,
-    ease: 'back.out(1.7)',
-    delay: 0.8,
-  });
+  gsap.fromTo('.skill-item',
+    { x: -20, opacity: 0 },
+    { x: 0, opacity: 1, stagger: 0.06, duration: 0.5, ease: 'power2.out', delay: 0.9 },
+  );
+
+  gsap.fromTo('.tech-pill',
+    { scale: 0, opacity: 0 },
+    { scale: 1, opacity: 1, stagger: 0.04, duration: 0.4, ease: 'back.out(1.7)', delay: 0.8 },
+  );
 });
 </script>
 
@@ -129,30 +123,29 @@ onMounted(() => {
             </h3>
           </div>
 
-          <!-- Skill bars -->
-          <div class="space-y-4">
+          <!-- Skill dots -->
+          <div class="space-y-3.5">
             <div
               v-for="skill in category.skills"
               :key="skill.name"
-              class="group/skill"
+              class="skill-item group/skill flex items-center justify-between gap-3"
             >
-              <div class="flex justify-between items-center mb-1.5">
+              <span
+                class="text-sm text-stone-300 font-light group-hover/skill:text-orange-400/80 transition-colors duration-300"
+              >
+                {{ skill.name }}
+              </span>
+              <div class="flex gap-1.5 items-center">
                 <span
-                  class="text-sm text-stone-300 font-light group-hover/skill:text-orange-400/80 transition-colors duration-300"
-                >
-                  {{ skill.name }}
-                </span>
-                <span class="text-[11px] text-stone-500 font-light">
-                  {{ skill.level }}%
-                </span>
-              </div>
-              <div class="h-1.5 bg-stone-800/80 rounded-full overflow-hidden">
-                <div
-                  class="h-full rounded-full transition-all duration-1000 ease-out"
-                  :style="{
-                    width: skill.level + '%',
-                    background: `linear-gradient(90deg, #f97316, #fbbf24)`,
-                  }"
+                  v-for="dot in 5"
+                  :key="dot"
+                  class="skill-dot block rounded-full transition-all duration-300 group-hover/skill:scale-110"
+                  :class="
+                    dot <= Math.round(skill.level / 20)
+                      ? 'w-2.5 h-2.5 bg-gradient-to-br from-orange-500 to-amber-400 shadow-[0_0_6px_rgba(249,115,22,0.45)]'
+                      : 'w-2 h-2 bg-stone-700/60'
+                  "
+                  :style="{ animationDelay: `${0.5 + dot * 0.07}s` }"
                 />
               </div>
             </div>
@@ -181,3 +174,24 @@ onMounted(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+@keyframes dotPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.skill-dot {
+  animation: dotPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+</style>

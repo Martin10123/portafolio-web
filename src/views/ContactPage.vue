@@ -30,37 +30,28 @@ const contactMethods = [
 ];
 
 onMounted(() => {
-  gsap.from('.contact-title', {
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    ease: 'power3.out',
-    delay: 0.2,
-  });
+  gsap.fromTo('.contact-title',
+    { y: 50, opacity: 0 },
+    { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 },
+  );
 
-  gsap.from('.contact-card', {
-    y: 40,
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power3.out',
-    delay: 0.4,
-  });
+  gsap.fromTo('.contact-card',
+    { y: 40, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.4 },
+  );
 
-  gsap.from('.contact-method', {
-    x: -30,
-    opacity: 0,
-    stagger: 0.1,
-    duration: 0.6,
-    ease: 'power3.out',
-    delay: 0.6,
-  });
+  gsap.fromTo('.contact-method',
+    { x: -30, opacity: 0 },
+    { x: 0, opacity: 1, stagger: 0.1, duration: 0.6, ease: 'power3.out', delay: 0.6 },
+  );
 });
 </script>
 
 <template>
   <section
-    class="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden px-6 py-16"
+    class="absolute inset-0 w-full h-full overflow-y-auto overflow-x-hidden"
   >
+    <div class="min-h-full relative z-10 py-24 px-6">
     <!-- Background decorations -->
     <div
       class="absolute top-1/4 -left-32 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"
@@ -210,6 +201,7 @@ onMounted(() => {
           </a>
         </p>
       </div>
+    </div>
     </div>
   </section>
 </template>

@@ -20,7 +20,7 @@ provide('activeSection', activeSection);
 </script>
 
 <template>
-  <div class="relative h-screen w-screen overflow-hidden">
+  <div class="relative h-screen w-screen overflow-hidden flex flex-col">
     <!-- 3D Background -->
     <ThreeBackground />
 
@@ -28,7 +28,7 @@ provide('activeSection', activeSection);
     <Navbar :active-section="activeSection" @navigate="navigateToSection" />
 
     <!-- Full-Screen Sections with Parallax Transitions -->
-    <div class="relative w-full h-full">
+    <div class="relative flex-1">
       <!-- Home Page -->
       <Transition
         name="slide-fade"

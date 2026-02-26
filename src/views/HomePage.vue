@@ -64,7 +64,7 @@ onMounted(() => {
 
       <!-- Name -->
       <h1
-        class="hero-name text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-5 leading-tight"
+        class="hero-name text-5xl! sm:text-6xl! md:text-7xl! lg:text-8xl! m-0! font-bold mb-5 leading-tight"
       >
         Hola, Soy
         <span class="gradient-text block sm:inline"> Martin</span>
