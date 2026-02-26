@@ -94,6 +94,19 @@ const allProjects: Project[] = [
     type: 'professional',
   },
   {
+    title: 'SIPAE – Sistema de Información de Alimentación Escolar',
+    description:
+      'Sistema integral de información para la Unidad Administrativa Especial de Alimentación Escolar del Ministerio de Educación Nacional. Plataforma de gran escala que integra módulos de consulta, gestión administrativa y transparencia pública del Programa de Alimentación Escolar (PAE). Incluye dashboards interactivos con estadísticas nacionales, gestión de usuarios y recursos con roles granulares, workflow de aprobaciones, monitoreo en tiempo real, mapas de distribución geográfica, reportes de cobertura y seguimiento de entregas. Sistema cloud-native con arquitectura de microservicios, contenedores Docker, orquestación OKD y pipelines CI/CD para garantizar alta disponibilidad y transparencia del PAE a nivel nacional.',
+    images: [
+      '/images/uapa-1.jpeg',
+      '/images/uapa-2.jpeg',
+      '/images/uapa-3.jpeg',
+    ],
+    linkDemo: 'https://sipae.gov.co/#/',
+    technologies: ['Vue 3', 'Laravel', 'PostgreSQL', 'Docker', 'Azure', 'Microservicios', 'Chart.js'],
+    type: 'professional',
+  },
+  {
     title: 'Demo Facebook',
     description:
       'Simulación de funcionalidades de Facebook: publicaciones, comentarios y reacciones en tiempo real.',

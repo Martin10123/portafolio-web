@@ -42,7 +42,17 @@ const skillCategories = [
       { name: 'Firebase', level: 80, icon: 'devicon-firebase-plain colored' },
       { name: 'Figma', level: 70, icon: 'devicon-figma-plain colored' },
       { name: 'VS Code', level: 95, icon: 'devicon-vscode-plain colored' },
-      { name: 'Docker', level: 60, icon: 'devicon-docker-plain colored' },
+    ],
+  },
+  {
+    title: 'DevOps & Cloud',
+    iconSvg: '/icons/cloud.svg',
+    gradient: 'from-blue-500 to-cyan-400',
+    description: 'Configuración de entornos en la nube, contenedores y pipelines de CI/CD para despliegues automatizados',
+    skills: [
+      { name: 'Docker', level: 75, icon: 'devicon-docker-plain colored' },
+      { name: 'OKD', level: 70, icon: 'devicon-openshift-plain colored' },
+      { name: 'GitHub Actions', level: 75, icon: 'devicon-github-original' },
     ],
   },
 ];
