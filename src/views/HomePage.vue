@@ -87,7 +87,9 @@ onMounted(() => {
       >
         Creando experiencias web modernas y eficientes. Especializado en
         <span class="text-orange-400/80">React</span>,
+        <span class="text-orange-400/80">Angular.js</span>,
         <span class="text-orange-400/80">Vue.js</span>,
+        <span class="text-orange-400/80">Node.js</span>,
         <span class="text-orange-400/80">Spring Boot</span> y
         <span class="text-orange-400/80">Laravel</span>.
       </p>
