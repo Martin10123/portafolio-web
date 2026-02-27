@@ -26,7 +26,7 @@ const skillCategories = [
     skills: [
       { name: 'Spring Boot', level: 85, icon: 'devicon-spring-original colored' },
       { name: 'Laravel', level: 80, icon: 'devicon-laravel-original colored' },
-      { name: 'Python', level: 80, icon: 'devicon-python-original colored' },
+      { name: 'Python', level: 80, icon: 'devicon-python-plain colored' },
       { name: 'Node.js', level: 75, icon: 'devicon-nodejs-plain colored' },
       { name: 'NestJS', level: 75, icon: 'devicon-nestjs-original colored' },
       { name: 'SQL Server', level: 85, icon: 'devicon-microsoftsqlserver-plain colored' },
