@@ -108,7 +108,7 @@ onMounted(() => {
           <p class="text-stone-300 text-base md:text-lg font-light leading-relaxed max-w-3xl mx-auto mb-8">
             Desarrollador de Software con
             <span class="text-orange-400 font-medium">3 años de experiencia</span>
-            especializado en <span class="text-orange-400 font-medium">React, Vue.js, Laravel, Python y Spring Boot</span>.
+            especializado en <span class="text-orange-400 font-medium">React, Angular, Vue.js, Laravel, Nodejs, Python y Spring Boot</span>.
             Lideré el desarrollo de soluciones en
             <span class="text-orange-400 font-medium">Cotecmar</span> logrando un
             <span class="text-orange-400 font-medium">+30% en eficiencia operativa</span>
