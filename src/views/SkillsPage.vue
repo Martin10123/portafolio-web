@@ -10,6 +10,7 @@ const skillCategories = [
     description: 'Interfaces modernas y responsivas',
     skills: [
       { name: 'React', level: 90, icon: 'devicon-react-original colored' },
+      { name: 'Angular.js', level: 85, icon: 'devicon-angular-plain colored' },
       { name: 'Vue.js', level: 85, icon: 'devicon-vuejs-plain colored' },
       { name: 'JavaScript', level: 92, icon: 'devicon-javascript-plain colored' },
       { name: 'TypeScript', level: 85, icon: 'devicon-typescript-plain colored' },
@@ -25,6 +26,7 @@ const skillCategories = [
     skills: [
       { name: 'Spring Boot', level: 85, icon: 'devicon-spring-original colored' },
       { name: 'Laravel', level: 80, icon: 'devicon-laravel-original colored' },
+      { name: 'Python', level: 80, icon: 'devicon-python-original colored' },
       { name: 'Node.js', level: 75, icon: 'devicon-nodejs-plain colored' },
       { name: 'NestJS', level: 75, icon: 'devicon-nestjs-original colored' },
       { name: 'SQL Server', level: 85, icon: 'devicon-microsoftsqlserver-plain colored' },
@@ -59,12 +61,14 @@ const skillCategories = [
 
 const techStack = [
   { name: 'React', icon: 'devicon-react-original colored' },
+  { name: 'Angular', icon: 'devicon-angular-original colored' },
   { name: 'Vue.js', icon: 'devicon-vuejs-plain colored' },
   { name: 'TypeScript', icon: 'devicon-typescript-plain colored' },
   { name: 'JavaScript', icon: 'devicon-javascript-plain colored' },
   { name: 'Tailwind CSS', icon: 'devicon-tailwindcss-original colored' },
   { name: 'Spring Boot', icon: 'devicon-spring-original colored' },
   { name: 'Laravel', icon: 'devicon-laravel-original colored' },
+  { name: 'Python', icon: 'devicon-python-original colored' },
   { name: 'Node.js', icon: 'devicon-nodejs-plain colored' },
   { name: 'Firebase', icon: 'devicon-firebase-plain colored' },
   { name: 'SQL Server', icon: 'devicon-microsoftsqlserver-plain colored' },
@@ -88,7 +92,7 @@ const stats = [
   },
   { 
     label: 'Proyectos Completados', 
-    value: '25+', 
+    value: '15+', 
     iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-400">
       <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>`
@@ -102,7 +106,7 @@ const stats = [
   },
   { 
     label: 'Líneas de Código', 
-    value: '50K+', 
+    value: '100K+', 
     iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-400">
       <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
     </svg>`
