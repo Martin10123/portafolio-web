@@ -9,8 +9,8 @@ const experience = [
     period: 'Mayo 2024 - Actualidad',
     year: '2024',
     description:
-      'Desarrollé interfaces de usuario modernas en Vue.js integradas con Laravel + Inertia.js para múltiples módulos internos. Optimicé flujos de trabajo logrando +30% en eficiencia operativa e implementé una plataforma unificada de componentes reutilizables que automatizó procesos clave.',
-    technologies: ['Vue.js', 'Laravel', 'Inertia.js', 'SQL Server'],
+      'Desarrollé interfaces de usuario modernas en Vue, React, integradas con Laravel. para múltiples módulos internos. Optimicé flujos de trabajo logrando +30% en eficiencia operativa e implementé una plataforma unificada de componentes reutilizables que automatizó procesos clave.',
+    technologies: ['Vue.js', 'React', 'Laravel', 'Inertia.js', 'SQL Server'],
     color: 'from-orange-500 to-amber-500',
   },
   {
@@ -19,8 +19,8 @@ const experience = [
     period: 'Oct 2025 – Ene 2026',
     year: '2025',
     description:
-      'Contratado para apoyar la finalización de un proyecto crítico con fecha límite. Desarrollé funcionalidades frontend en React enfocadas en entrega rápida de módulos clave, e implementé servicios backend en .NET con arquitectura de microservicios.',
-    technologies: ['React', '.NET', 'Microservicios', 'TypeScript'],
+      'Contratado para apoyar la finalización de un proyecto crítico con fecha límite. Desarrollé funcionalidades frontend en Angular, React. next.js enfocadas en entrega rápida de módulos clave, e implementé servicios backend en .NET con arquitectura de microservicios.',
+    technologies: ['Angular', 'React', 'Next.js', '.NET', 'Microservicios', 'TypeScript'],
     color: 'from-amber-500 to-yellow-500',
   },
   {
