@@ -103,7 +103,7 @@ const allProjects: Project[] = [
       '/images/uapa-3.jpeg',
     ],
     linkDemo: 'https://sipae.gov.co/#/',
-    technologies: ['Vue 3', 'Laravel', 'PostgreSQL', 'Docker', 'Azure', 'Microservicios', 'Chart.js'],
+    technologies: ['Angular', 'Laravel', 'PostgreSQL', 'Docker', 'Azure', 'Microservicios', 'Chart.js'],
     type: 'professional',
   },
   {
