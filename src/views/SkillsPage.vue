@@ -44,6 +44,8 @@ const skillCategories = [
       { name: 'Firebase', level: 80, icon: 'devicon-firebase-plain colored' },
       { name: 'Figma', level: 70, icon: 'devicon-figma-plain colored' },
       { name: 'VS Code', level: 95, icon: 'devicon-vscode-plain colored' },
+      { name: 'Postman', level: 80, icon: 'devicon-postman-plain colored' },
+      { name: 'Cursor', level: 80, icon: 'devicon-crystal-plain colored' },
     ],
   },
   {
@@ -53,6 +55,7 @@ const skillCategories = [
     description: 'Configuración de entornos en la nube, contenedores y pipelines de CI/CD para despliegues automatizados',
     skills: [
       { name: 'Docker', level: 75, icon: 'devicon-docker-plain colored' },
+      { name: 'Azure', level: 75, icon: 'devicon-azure-plain colored' },
       { name: 'OKD', level: 70, icon: 'devicon-openshift-plain colored' },
       { name: 'GitHub Actions', level: 75, icon: 'devicon-github-original' },
     ],
@@ -75,6 +78,7 @@ const techStack = [
   { name: 'MySQL', icon: 'devicon-mysql-original colored' },
   { name: 'Git', icon: 'devicon-git-plain colored' },
   { name: 'Docker', icon: 'devicon-docker-plain colored' },
+  { name: 'Azure', icon: 'devicon-azure-plain colored' },
   { name: 'Figma', icon: 'devicon-figma-plain colored' },
   { name: 'Express', icon: 'devicon-express-original' },
   { name: 'Java', icon: 'devicon-java-plain colored' },

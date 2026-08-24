@@ -4,14 +4,24 @@ import gsap from 'gsap';
 
 const experience = [
   {
+    company: 'GBM — Guatemala',
+    role: 'Desarrollador FullStack',
+    period: '13 Jul 2026 - Actualidad',
+    year: '2026',
+    description:
+      'Desarrollo y mantenimiento de sistemas institucionales de alto impacto para el sector registral. Intervengo en frontend, servicios internos y bases de datos, resolviendo incidencias en producción y evolucionando módulos críticos que sostienen la operación diaria de usuarios y procesos de negocio.',
+    technologies: ['.NET', 'C#', 'Java', 'DB2', 'ASP.NET', 'Servicios Web'],
+    color: 'from-orange-500 to-amber-500',
+  },
+  {
     company: 'Cotecmar',
     role: 'Desarrollador de Software',
-    period: 'Mayo 2024 - Actualidad',
+    period: 'Mayo 2024 - 13 Jul 2026',
     year: '2024',
     description:
       'Desarrollé interfaces de usuario modernas en Vue, React, integradas con Laravel. para múltiples módulos internos. Optimicé flujos de trabajo logrando +30% en eficiencia operativa e implementé una plataforma unificada de componentes reutilizables que automatizó procesos clave.',
     technologies: ['Vue.js', 'React', 'Laravel', 'Inertia.js', 'SQL Server'],
-    color: 'from-orange-500 to-amber-500',
+    color: 'from-amber-500 to-yellow-500',
   },
   {
     company: 'Saroa',
@@ -21,16 +31,6 @@ const experience = [
     description:
       'Contratado para apoyar la finalización de un proyecto crítico con fecha límite. Desarrollé funcionalidades frontend en Angular, React. next.js enfocadas en entrega rápida de módulos clave, e implementé servicios backend en .NET con arquitectura de microservicios.',
     technologies: ['Angular', 'React', 'Next.js', '.NET', 'Microservicios', 'TypeScript'],
-    color: 'from-amber-500 to-yellow-500',
-  },
-  {
-    company: 'Arismendy Andrade',
-    role: 'Desarrollador FullStack',
-    period: 'Feb 2023 – May 2024',
-    year: '2023',
-    description:
-      'Desarrollé scripts en Python para automatización de tareas administrativas y operativas, optimizando tiempos y reduciendo errores manuales. Mejoré el uso de bases de datos y apoyé la optimización de procesos internos con soporte técnico.',
-    technologies: ['Python', 'Excel', 'Automatización', 'SQL'],
     color: 'from-yellow-500 to-orange-400',
   },
 ];

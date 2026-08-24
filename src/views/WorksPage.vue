@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue';
+import { onMounted, onUnmounted, ref, computed } from 'vue';
 import gsap from 'gsap';
 
 const activeFilter = ref('all');
@@ -23,6 +23,39 @@ function nextSlide(title: string, length: number) {
 }
 function goToSlide(title: string, index: number) {
   carouselIndexes.value[title] = index;
+}
+
+// Lightbox
+const lightbox = ref<{ images: string[]; index: number; title: string } | null>(null);
+
+function openLightbox(images: string[], index: number, title: string) {
+  if (!images.length) return;
+  lightbox.value = { images, index, title };
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.value = null;
+  document.body.style.overflow = '';
+}
+
+function lightboxPrev() {
+  if (!lightbox.value) return;
+  const len = lightbox.value.images.length;
+  lightbox.value.index = (lightbox.value.index - 1 + len) % len;
+}
+
+function lightboxNext() {
+  if (!lightbox.value) return;
+  const len = lightbox.value.images.length;
+  lightbox.value.index = (lightbox.value.index + 1) % len;
+}
+
+function onLightboxKey(e: KeyboardEvent) {
+  if (!lightbox.value) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lightboxPrev();
+  if (e.key === 'ArrowRight') lightboxNext();
 }
 
 interface Project {
@@ -126,42 +159,54 @@ const allProjects: Project[] = [
     technologies: ['React', 'Firebase', 'CSS', 'JavaScript'],
     type: 'personal',
   },
-  {
-    title: 'Métodos Numéricos',
+    {
+    title: 'Consulta a Distancia – GBM',
     description:
-      'Resolución de problemas matemáticos con Newton-Raphson, Trapezoidal y más métodos numéricos.',
-    image: '/images/methodsNumeric.png',
-    linkDemo: 'https://metodos-numericos-eight.vercel.app/',
-    linkGitHub: 'https://github.com/Martin10123/metodos-numericos',
-    technologies: ['React', 'Tailwind', 'TypeScript'],
-    type: 'personal',
+      'Portal del Registro General de la Propiedad para consulta remota de información registral. Incluye autenticación de usuarios, consulta de finca por folio/libro/departamento, recarga de saldo, solicitudes de descarga de inscripciones, gestión de cuenta y reportes de fincas consultadas y acreditaciones.',
+    images: [
+      '/images/consulta-distancia-1.png',
+      '/images/consulta-distancia-2.png',
+      '/images/consulta-distancia-3.png',
+      '/images/consulta-distancia-4.png',
+      '/images/consulta-distancia-5.png',
+    ],
+    linkDemo: 'https://consulta.rgp.org.gt/consulta-distancia2-web/',
+    technologies: ['Java', 'JSF', 'XHTML', 'JavaScript', 'DB2'],
+    type: 'professional',
   },
   {
-    title: 'Gestión Taxis',
+    title: 'Formularios Web – GBM',
     description:
-      'Gestión de taxis empresariales: login, perfiles, taller y asignación de vehículos con backend robusto.',
-    image: '/images/taxis-app.png',
-    linkDemo: 'https://manage-transport.vercel.app/',
-    linkGitHub: 'https://github.com/Martin10123/manage-transport',
-    technologies: ['React', 'Spring Boot', 'Zustand', 'TypeScript', 'SQL Server'],
-    type: 'collaborative',
+      'Módulo de certificaciones en línea del Registro General de la Propiedad (Guatemala). Permite solicitar historial completo, primera y última inscripción, certificaciones específicas de finca, negativas, duplicados, avisos y asientos de testamento, además de renotificación por correo. Formularios dinámicos con validación de solicitante, fincas y opciones de vigencia en el extranjero.',
+    images: [
+      '/images/formularios-web-1.png',
+      '/images/formularios-web-2.png',
+      '/images/formularios-web-3.png',
+      '/images/formularios-web-4.png',
+    ],
+    linkDemo: 'https://consulta.rgp.org.gt/FormulariosWeb',
+    technologies: ['Java', 'JSP', 'JavaScript', 'HTML/CSS', 'DB2'],
+    type: 'professional',
   },
   {
-    title: 'EnviApp',
+    title: 'Operación Registral Web – GBM',
     description:
-      'Plataforma de envíos de paquetes entre usuarios sin intermediarios, con sistema de calificaciones.',
-    image: '/images/envi-app.png',
-    linkDemo: 'https://envi-app.vercel.app',
-    linkGitHub: 'https://github.com/Martin10123/enviApp',
-    technologies: ['React', 'Node.js', 'Express', 'Zustand', 'TypeScript'],
-    type: 'collaborative',
+      'Sistema interno del Registro General de la Propiedad para la operación diaria de certificaciones. Incluye login institucional, bandejas de trabajo con prioridades y estados, historial de certificaciones por finca o número, gestión de honorarios y renotificación vía correo electrónico, orientado a roles como revisor certificador.',
+    images: [
+      '/images/operacion-registral-1.jpg',
+      '/images/operacion-registral-2.png',
+      '/images/operacion-registral-3.png',
+      '/images/operacion-registral-4.png',
+      '/images/operacion-registral-5.png',
+    ],
+    technologies: ['Java', 'JSP', 'JavaScript', 'HTML/CSS', 'DB2'],
+    type: 'professional',
   },
 ];
 
 const filters = [
   { id: 'all', label: 'Todos' },
   { id: 'personal', label: 'Personales' },
-  { id: 'collaborative', label: 'Colaborativos' },
 ];
 
 const professionalProjects = computed(() => {
@@ -178,6 +223,8 @@ const filteredOtherProjects = computed(() => {
 });
 
 onMounted(() => {
+  window.addEventListener('keydown', onLightboxKey);
+
   gsap.fromTo('.works-title',
     { y: 50, opacity: 0 },
     { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 },
@@ -197,6 +244,11 @@ onMounted(() => {
     { y: 60, opacity: 0 },
     { y: 0, opacity: 1, stagger: 0.1, duration: 0.7, ease: 'power3.out', delay: 0.8 },
   );
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', onLightboxKey);
+  document.body.style.overflow = '';
 });
 </script>
 
@@ -251,19 +303,30 @@ onMounted(() => {
           <!-- Project Image / Carousel -->
           <div class="relative overflow-hidden h-48">
 
+            <!-- ── Placeholder (sin imágenes aún) ── -->
+            <template v-if="project.images && project.images.length === 0">
+              <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-stone-800 via-stone-900 to-orange-950/40">
+                <span class="text-stone-500 text-sm font-light tracking-wide">Imágenes próximamente</span>
+              </div>
+            </template>
+
             <!-- ── Single image ── -->
-            <template v-if="!project.images">
+            <template v-else-if="!project.images">
               <img
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-zoom-in"
                 :src="project.image"
                 :alt="project.title"
+                @click="openLightbox([project.image!], 0, project.title)"
               />
             </template>
 
             <!-- ── Carousel ── -->
             <template v-else>
               <!-- Slides -->
-              <div class="w-full h-full relative">
+              <div
+                class="w-full h-full relative cursor-zoom-in"
+                @click="openLightbox(project.images!, carouselIndexes[project.title] ?? 0, project.title)"
+              >
                 <img
                   v-for="(img, idx) in project.images"
                   :key="img"
@@ -413,7 +476,7 @@ onMounted(() => {
       <div>
         <div class="works-title text-center mt-8">
           <h3 class="text-2xl md:text-4xl font-bold mb-3">
-            <span class="gradient-text">Proyectos Personales y Colaborativos</span>
+            <span class="gradient-text">Proyectos Personales</span>
           </h3>
           <p class="text-stone-400 text-sm md:text-base font-light max-w-xl mx-auto mb-8">
             Proyectos de aprendizaje y experimentación con nuevas tecnologías
@@ -446,19 +509,30 @@ onMounted(() => {
           <!-- Project Image / Carousel -->
           <div class="relative overflow-hidden h-48">
 
+            <!-- ── Placeholder (sin imágenes aún) ── -->
+            <template v-if="project.images && project.images.length === 0">
+              <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-stone-800 via-stone-900 to-orange-950/40">
+                <span class="text-stone-500 text-sm font-light tracking-wide">Imágenes próximamente</span>
+              </div>
+            </template>
+
             <!-- ── Single image ── -->
-            <template v-if="!project.images">
+            <template v-else-if="!project.images">
               <img
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-zoom-in"
                 :src="project.image"
                 :alt="project.title"
+                @click="openLightbox([project.image!], 0, project.title)"
               />
             </template>
 
             <!-- ── Carousel ── -->
             <template v-else>
               <!-- Slides -->
-              <div class="w-full h-full relative">
+              <div
+                class="w-full h-full relative cursor-zoom-in"
+                @click="openLightbox(project.images!, carouselIndexes[project.title] ?? 0, project.title)"
+              >
                 <img
                   v-for="(img, idx) in project.images"
                   :key="img"
@@ -605,5 +679,63 @@ onMounted(() => {
     </div>
     </div>
     </div>
+
+    <!-- Lightbox -->
+    <Teleport to="body">
+      <div
+        v-if="lightbox"
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8"
+        @click.self="closeLightbox"
+      >
+        <button
+          type="button"
+          class="absolute top-4 right-4 z-10 rounded-full bg-stone-900/80 border border-stone-600 p-2 text-stone-200 hover:text-orange-400 hover:border-orange-500/50 transition-colors cursor-pointer"
+          aria-label="Cerrar"
+          @click="closeLightbox"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <button
+          v-if="lightbox.images.length > 1"
+          type="button"
+          class="absolute left-3 md:left-6 z-10 rounded-full bg-stone-900/80 border border-stone-600 p-2.5 text-stone-200 hover:text-orange-400 hover:border-orange-500/50 transition-colors cursor-pointer"
+          aria-label="Anterior"
+          @click="lightboxPrev"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+
+        <div class="flex flex-col items-center gap-3 max-w-[95vw] max-h-[90vh]">
+          <img
+            :src="lightbox.images[lightbox.index]"
+            :alt="`${lightbox.title} - ${lightbox.index + 1}`"
+            class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+          />
+          <p class="text-stone-300 text-sm font-light">
+            {{ lightbox.title }}
+            <span v-if="lightbox.images.length > 1" class="text-stone-500">
+              · {{ lightbox.index + 1 }} / {{ lightbox.images.length }}
+            </span>
+          </p>
+        </div>
+
+        <button
+          v-if="lightbox.images.length > 1"
+          type="button"
+          class="absolute right-3 md:right-6 z-10 rounded-full bg-stone-900/80 border border-stone-600 p-2.5 text-stone-200 hover:text-orange-400 hover:border-orange-500/50 transition-colors cursor-pointer"
+          aria-label="Siguiente"
+          @click="lightboxNext"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </Teleport>
   </section>
 </template>
